@@ -57,7 +57,17 @@ export const getUserBy = async (where: FindOptionsWhere<User>) => {
 };
 
 export const getUserById = async (id: number) => {
-  const user = await userRepo.findOneBy({ id });
+  const user = await userRepo.findOne({
+    where: { id },
+    select: {
+      profile: {
+        id: true,
+        phone: true,
+        address: true,
+      },
+    },
+    relations: { profile: true },
+  });
   if (!user) throw new Error("User Not Found");
   return user;
 };

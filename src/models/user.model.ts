@@ -1,5 +1,6 @@
 import { AbstractEntity } from "../config/abstract.entity";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Profile } from "./profile.model";
 
 @Entity()
 export class User extends AbstractEntity<User> {
@@ -11,4 +12,7 @@ export class User extends AbstractEntity<User> {
 
   @Column()
   password: string;
+
+  @OneToOne(() => Profile, (profile) => profile.user)
+  profile: Profile;
 }

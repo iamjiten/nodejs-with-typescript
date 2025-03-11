@@ -5,9 +5,11 @@ import {
   deleteUser,
   getUserBy,
   getUserByEmail,
+  getUserById,
   getUsers,
   updateUser,
 } from "../repos/user.repo";
+import { createUserProfile } from "../repos/profile.repo";
 
 export const getUsersHandler = async (req: any, res: any) => {
   const users = await getUsers(req.query);
@@ -23,6 +25,12 @@ export const createUserHandler = async (req: Request, res: any) => {
       .json({ error: true, message: "Email already exist" });
   }
   const createdUser = await createUser(body);
+
+  const profile = await createUserProfile({
+    userId: createdUser.id,
+    phone: body.phone,
+    address: body.address,
+  });
   return res.json({ user: createdUser });
 };
 
@@ -59,4 +67,11 @@ export const deleteUserHandler = async (req: Request, res: any) => {
   } catch (err: any) {
     return res.status(500).json({ error: true, message: err.message });
   }
+};
+
+export const getUserDetailHandler = async (req: Request, res: any) => {
+  const param = req.params;
+  const { id } = param;
+  const user = await getUserById(+id);
+  return res.json({ user });
 };

@@ -1,6 +1,7 @@
 import { User } from "../models/user.model";
 import { DataSource } from "typeorm";
 import dotenv from "dotenv";
+import { Profile } from "../models/profile.model";
 dotenv.config();
 
 export const AppDataSource = new DataSource({
@@ -12,7 +13,7 @@ export const AppDataSource = new DataSource({
   database: "learn_nodejs",
   synchronize: true,
   logging: false,
-  entities: [User],
+  entities: [User, Profile],
   subscribers: [],
   migrations: [],
 });

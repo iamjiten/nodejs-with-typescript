@@ -8,6 +8,8 @@ export const CreateUser = z.object({
   email: z
     .string({ message: "Email is required" })
     .email({ message: "Email must valid" }),
+  phone: z.string({ message: "Phone is required" }),
+  address: z.string({ message: "Address is requied" }).optional(),
 });
 
 export type CreateUsertype = z.infer<typeof CreateUser>;
