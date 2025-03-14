@@ -1,8 +1,8 @@
 import { User } from "../models/user.model";
 import { AppDataSource } from "../config";
-import bcryptjs from "bcryptjs";
 import { CreateUsertype } from "../validations/user.validation";
 import { DeepPartial, FindOptionsWhere } from "typeorm";
+import { generateHash } from "../utils/auth.utils";
 
 const userRepo = AppDataSource.getRepository(User);
 
@@ -81,12 +81,6 @@ export const updateUser = async (id: number, data: DeepPartial<User>) => {
   } catch (err) {
     throw err;
   }
-};
-
-const generateHash = async (plainTxt: string): Promise<string> => {
-  const salt = 10;
-  const hash = await bcryptjs.hashSync(plainTxt, salt);
-  return hash;
 };
 
 export const deleteUser = async (id: number) => {

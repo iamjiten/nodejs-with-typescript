@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { UserType } from "../types/user.type";
+
 import {
   createUser,
   deleteUser,
@@ -9,7 +9,7 @@ import {
   getUsers,
   updateUser,
 } from "../repos/user.repo";
-import { createUserProfile } from "../repos/profile.repo";
+import { createUserProfile } from "@/repos/profile.repo";
 
 export const getUsersHandler = async (req: any, res: any) => {
   const users = await getUsers(req.query);

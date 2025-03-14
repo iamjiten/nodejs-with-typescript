@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "build": "tsc --build",
     "start:dev": "nodemon src/app.ts",
-    "start": "node dist/app.js"
+    "start": "node ./dist/app.js"
+  },
+  "_moduleAliases": {
+    "@": "./dist"
   },
   "keywords": [],
   "author": "",
@@ -13,13 +17,17 @@
     "bcryptjs": "^3.0.2",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "module-alias": "^2.2.3",
     "mysql2": "^3.13.0",
     "reflect-metadata": "^0.2.2",
+    "tsconfig-paths": "^4.2.0",
     "typeorm": "^0.3.21",
     "zod": "^3.24.2"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.9",
     "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"

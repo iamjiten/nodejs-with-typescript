@@ -1,8 +1,17 @@
+import "module-alias/register";
 import "reflect-metadata";
 import express, { Application } from "express";
 import router from "./routes";
 import { AppDataSource } from "./config";
 import dotenv from "dotenv";
+
+declare global {
+  namespace Express {
+    interface Request {
+      user?: { id: number; email: string }; // Add the `user` property to the `Request` type
+    }
+  }
+}
 
 const app: Application = express();
 app.use(express.json());
